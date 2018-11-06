@@ -1,7 +1,8 @@
-Hvis det ikke er hindringer foran vil den kjøre forover, eller teip på gulvet (ultralydsensor, IR-sensor)
+Hvis det ikke er hindringer foran vil den kjøre forover(ultralydsensor)
+Møter teip - snu (IR)
 Møter den noe vil den stoppe opp (ultralydsensor)
-Kamera skrus på
-Sjekker farge på gjenstand i bildet
-Rød = venstre
-Grønn = høyre
-Blå = dance 
+	Kamera skrus på
+	Sjekker farge på gjenstand i bildet
+	Rød = venstre
+	Grønn = høyre
+	Blå = dance 

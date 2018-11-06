@@ -1,5 +1,5 @@
 from time import sleep
-
+from Arbitor import Arbitor
 
 class BBCON:
 
@@ -8,7 +8,7 @@ class BBCON:
         self.active_behaviors = []  # list of all active behaviors
         self.sensobs = []  # list of all sensory objects used by the bbcno
         self.motobs = []  # list of all motors objects used by the bbcon
-        self.arbitrator = None  # arbitrator object that will resolve actuator requests produced by the behaviors
+        self.arbitrator = Arbitrator()# arbitrator object that will resolve actuator requests produced by the behaviors
         # ikke lagt til forslag om timestep, inactive o.l.
 
     # metoder for bbcon
@@ -30,6 +30,7 @@ class BBCON:
     def run_one_timestep(self):
         self.update_all_sensobs()  # 1. oppdater alle sensobs
         self.update_all_behaviors()  # 2. oppdater alle behaviors
+        #motor rec er en liste
         motor_recommendations = self.arbitrator.choose_action()  # 3. invoke arbitrator by caling choose action, mellomlagre output
         self.update_motobs(motor_recommendations)  # 4.update settings of all motors
         self.wait(0.5)  # 5. pause for å la motorsettings være aktive en periode
@@ -43,6 +44,7 @@ class BBCON:
         raise NotImplementedError
 
     def update_motobs(self, recommendations):
+        #tar inn en liste av recommendations 
         raise NotImplementedError
 
     def wait(self, seconds):

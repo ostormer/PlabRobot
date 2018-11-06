@@ -14,7 +14,7 @@ def weightedChoice(items, weights):
             return items[i-1]
 
 
-class Arbitor:
+class Arbitrator:
 
     def __init__(self, bbcon):
         self.bbcon = bbcon

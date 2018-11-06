@@ -1,5 +1,5 @@
 from time import sleep
-from Arbitor import Arbitor
+from Arbitrator import Arbitrator
 
 class BBCON:
 
@@ -8,7 +8,7 @@ class BBCON:
         self.active_behaviors = []  # list of all active behaviors
         self.sensobs = []  # list of all sensory objects used by the bbcno
         self.motobs = []  # list of all motors objects used by the bbcon
-        self.arbitrator = Arbitrator()# arbitrator object that will resolve actuator requests produced by the behaviors
+        self.arbitrator = Arbitrator(self)# arbitrator object that will resolve actuator requests produced by the behaviors
         # ikke lagt til forslag om timestep, inactive o.l.
 
     # metoder for bbcon

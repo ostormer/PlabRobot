@@ -1,0 +1,7 @@
+Hvis det ikke er hindringer foran vil den kjøre forover, eller teip på gulvet (ultralydsensor, IR-sensor)
+Møter den noe vil den stoppe opp (ultralydsensor)
+Kamera skrus på
+Sjekker farge på gjenstand i bildet
+Rød = venstre
+Grønn = høyre
+Blå = dance 

@@ -1,3 +1,4 @@
+from PIL import Image
 
 
 class Behavior:
@@ -28,16 +29,37 @@ class Behavior:
             self.active_flag != self.consider_deactivation()
         else:
             self.active_flag == self.consider_activation()
-        if not self.active_flag:
-            # Deactivate
-            raise NotImplementedError
 
-        self.sense_and_act()  # Update match_degree, motor_recommendations
-        self.weight = self.match_degree * self.priority
-        # Do stuff with weight and motor_recommendations
-        raise NotImplementedError
+        if self.active_flag:
+            self.sense_and_act()  # Update match_degree, motor_recommendations
+            self.weight = self.match_degree * self.priority
+            # Do stuff with weight and motor_recommendations
+            raise NotImplementedError
 
     def sense_and_act(self):
         # Uses its sensobs and calculates match_degree, motor_recommendations
-
+        # Implemented in each subclass
         raise NotImplementedError
+
+
+class CameraColorBehavior(Behavior):
+    """docstring for CameraColorBehavior."""
+    def __init__(self, bbcon, sensobs, priority):
+        super(CameraColorBehavior, self).__init__(bbcon, sensobs, priority)
+
+    def consider_deactivation(self):
+        if not self.bbcon.activate_camera:
+            self.active_flag = False
+            # May have to update lists of active behaviors and sensobs in bbcon
+
+    def consider_activation(self):
+        if self.bbcon.activate_camera:
+            self.active_flag = True
+            # May have to update lists of active behaviors and sensobs in bbcon
+
+    def sense_and_act(self):
+        img = self.sensobs[0].get_value()
+        width, height = img.size
+        for y in range(height):
+            for x in range(width):
+                img.getpixel((x,y))

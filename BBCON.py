@@ -38,10 +38,12 @@ class BBCON:
 
     # støttefunksjoner til run_one_timestep
     def update_all_sensobs(self):
-        raise NotImplementedError
+        for sensob in self.sensobs:
+            sensob.update()
 
     def update_all_behaviors(self):
-        raise NotImplementedError
+        for behavior in self.behaviors:
+            behavior.update()
 
     def update_motobs(self, recommendations):
         #tar inn en liste av recommendations 

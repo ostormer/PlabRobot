@@ -25,10 +25,10 @@ class Motob:
         if command == "L":
             # Turn left
             print("Turning left")
-            dur = value/20  # SOME NUMBER WE NEED TO EXPERIMENT TO FIND
+            dur = value/40  # SOME NUMBER WE NEED TO EXPERIMENT TO FIND
             self.motors.left(speed=0.25, dur=dur)
         elif command == "R":
-            dur = value/20  # SOME NUMBER WE NEED TO EXPERIMENT TO FIND
+            dur = value/40  # SOME NUMBER WE NEED TO EXPERIMENT TO FIND
             self.motors.right(speed=0.25, dur=dur)
         # More commands here...
 

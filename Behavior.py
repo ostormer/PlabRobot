@@ -17,11 +17,11 @@ class Behavior:
 
     def consider_activation(self):
         # when a behavior is active it should test whether it should deactivate
-        raise NotImplementedError
+        pass
 
     def consider_deactivation(self):
         # when a behavior is inactive it should test whether it should activate
-        raise NotImplementedError
+        pass 
 
     def update(self):
         # Called by the BBCON
@@ -63,3 +63,15 @@ class CameraColorBehavior(Behavior):
         for y in range(height):
             for x in range(width):
                 img.getpixel((x,y))
+
+class IR(Behavior):
+    def __init__(self,bbcon,sensobs,priority):
+        super(IR,self).__init__(bbcon, sensobs, priority)
+    
+    def sense_and_act(self):
+        value = self.sensobs.get_value()
+        
+
+
+
+class UltrasonicBehavior(Behavior):

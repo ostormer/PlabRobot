@@ -4,7 +4,7 @@ from basic_robot.camera import Camera
 
 cam = Camera()
 img = cam.update()
-
+img.save("image.png")
 width, height = img.size
 col = [0, 0, 0]
 for y in range(height):

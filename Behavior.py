@@ -34,6 +34,7 @@ class Behavior:
             self.sense_and_act()  # Update match_degree, motor_recommendations
             self.weight = self.match_degree * self.priority
             # Do stuff with weight and motor_recommendations
+
             raise NotImplementedError
 
     def sense_and_act(self):
@@ -42,8 +43,10 @@ class Behavior:
         raise NotImplementedError
 
 
+
 class CameraColorBehavior(Behavior):
-    """docstring for CameraColorBehavior."""
+    """Behavior subclass that should determine the color the camera sees the most of."""
+
     def __init__(self, bbcon, sensobs, priority):
         super(CameraColorBehavior, self).__init__(bbcon, sensobs, priority)
 
@@ -60,13 +63,20 @@ class CameraColorBehavior(Behavior):
     def sense_and_act(self):
         img = self.sensobs[0].get_value()
         width, height = img.size
+        col = [0, 0, 0]
         for y in range(height):
             for x in range(width):
-                img.getpixel((x,y))
+                r, g, b = img.getpixel((x, y))
+                col[0] += r
+                col[1] += g
+                col[2] += b
+
+        tot = sum(col)
+        frac = [c / tot for c in col]
+        print(frac)
+
 
 class IR(Behavior):
-    def __init__(self,bbcon,sensobs,priority):
-        super(IR,self).__init__(bbcon, sensobs, priority)
 
     def sense_and_act(self):
         value = self.sensobs.get_value()
@@ -79,8 +89,13 @@ class IR(Behavior):
             if reflectance < dark_treshold:
                 dark_count += 1
                 reflect_sum += reflectance
-
+        # Update match_degree and weight
         if dark_count >= 2:  # Need at least 2 dark readings to have any priority
+            self.match_degree = 0.5 + 0.5 * (1 - reflect_sum / dark_count)
+        else:
+            self.match_degree = 0
+        # Update motor_recommendations
+        self.motor_recommendations = (("L", 180))  # Turn 180 deg
 
 
 

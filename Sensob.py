@@ -1,3 +1,4 @@
+from basic_robot.reflectance_sensors import *
 
 
 class Sensob:
@@ -5,7 +6,7 @@ class Sensob:
     Calls Sensor objects' methods to get their values, used by Behaviors
     I think the best way to implement sensobs that process input data
     is as individual subclasses.
-    This class should work for simple sensobs that read raw sensor data"""
+    This class works for simple sensobs that read raw sensor data"""
 
     def __init__(self, sensors):
         self.sensors = sensors  # A list(!) of sensors used by the sensobs

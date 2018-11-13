@@ -21,7 +21,7 @@ class Behavior:
 
     def consider_deactivation(self):
         # when a behavior is inactive it should test whether it should activate
-        pass 
+        pass
 
     def update(self):
         # Called by the BBCON
@@ -67,10 +67,20 @@ class CameraColorBehavior(Behavior):
 class IR(Behavior):
     def __init__(self,bbcon,sensobs,priority):
         super(IR,self).__init__(bbcon, sensobs, priority)
-    
+
     def sense_and_act(self):
         value = self.sensobs.get_value()
-        
+
+        dark_treshold = 0.25
+        readings = self.update()
+        dark_count = 0
+        reflect_sum = 0
+        for reflectance in readings:
+            if reflectance < dark_treshold:
+                dark_count += 1
+                reflect_sum += reflectance
+
+        if dark_count >= 2:  # Need at least 2 dark readings to have any priority
 
 
 

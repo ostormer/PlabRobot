@@ -74,6 +74,17 @@ class CameraColorBehavior(Behavior):
         tot = sum(col)
         frac = [c / tot for c in col]
         print(frac)
+        max_color = frac.index(max(frac))
+
+        if max_color == 0:
+            # Red
+            pass
+        elif max_color == 1:
+            # Green
+            pass
+        elif max_color == 2:
+            # Blue
+            pass
 
 
 class IR(Behavior):
@@ -100,3 +111,6 @@ class IR(Behavior):
 
 
 class UltrasonicBehavior(Behavior):
+
+    def sense_and_act(self):
+        pass

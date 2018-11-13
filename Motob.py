@@ -21,9 +21,10 @@ class Motob:
         # for example: ("L", 30) : means turn 30 deg to the left
         # or ("F", [2, 0.3]) : means drive forward for 2 sec at 0.3 speed
         command, value = self.recom[0], self.recom[1]
-
+        print(command, value)
         if command == "L":
             # Turn left
+            print("Turning left")
             dur = value/20  # SOME NUMBER WE NEED TO EXPERIMENT TO FIND
             self.motors.left(speed=0.25, dur=dur)
         elif command == "R":

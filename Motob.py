@@ -31,4 +31,4 @@ class Motob:
             self.motors.right(speed=0.25, dur=dur)
         # More commands here...
 
-        raise NotImplementedError
+        pass

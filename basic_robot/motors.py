@@ -47,9 +47,9 @@ class Motors():
         self.persist(dur)
 
     def left(self, speed=0.25, dur=None):
+        print("Motors object turning left")
         s = int(self.max * speed)
         if self.dc == 0:
-            print("Motors object turning left")
             self.set_left_dir(1)
             self.set_left_speed(s)
             self.set_right_dir(0)

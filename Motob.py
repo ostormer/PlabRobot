@@ -1,3 +1,4 @@
+from basic_robot.motors import Motors
 
 
 class Motob:

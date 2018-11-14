@@ -77,7 +77,7 @@ class CameraColorBehavior(Behavior):
 
         tot = sum(col)
         frac = [c / tot for c in col]
-        print(frac)
+        print("Fractions of [R,G,B] :  " + str(frac))
         max_color = frac.index(max(frac))
 
         if max_color == 0:

@@ -17,7 +17,6 @@ class Sensob:
                 # Need to double-check that this works in all sensor wrappers
                 sens.update()
                 self.value.append(sens.get_value())
-                print("New value of sensob is: " + str(self.value))
 
     def get_value(self):
         return self.value

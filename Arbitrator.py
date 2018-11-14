@@ -25,7 +25,6 @@ class Arbitrator:
         for b in behaviors:
             recommendations.append(b.motor_recommendations)
             weights.append(b.weight)
-            print("Appended " + str(recommendations[-1]) + str(weights[-1]))
         chosen = None
 
         if weighted_random:

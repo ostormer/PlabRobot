@@ -24,12 +24,12 @@ class Motob:
             # Turn left degrees
             self.motors.stop()
             dur = value[0]/150
-            self.motors.left(speed=0.6, dur=dur)
+            self.motors.left(speed=0.5, dur=dur)
         elif command == "R":
             # Turn right degrees
             self.motors.stop()
             dur = value[0]/150
-            self.motors.right(speed=0.6, dur=dur)
+            self.motors.right(speed=0.5, dur=dur)
         elif command == "F":
             # Drive forward seconds
             self.motors.forward(speed=0.2, dur=value[0])

@@ -1,5 +1,5 @@
 from PIL import Image
-
+import random
 
 class Behavior:
     """A behavior of the BBR"""
@@ -88,8 +88,11 @@ class CameraColorBehavior(Behavior):
 
 
 class IR(Behavior):
+    def __init__(self, bbcon, sensobs, priority):
+        super(IR, self).__init__(bbcon, sensobs, priority)
 
     def sense_and_act(self):
+#er value og readings tenkt å være samme ting?         
         value = self.sensobs.get_value()
 
         dark_treshold = 0.25
@@ -111,6 +114,15 @@ class IR(Behavior):
 
 
 class UltrasonicBehavior(Behavior):
+    #returnerer distansen til objekt foran sensor i cm
+    #til testing: ultrasonic.send_activation_pulse inneholder en sleep som
+    #vi må prøve oss frem til (linje 61)
+    def __init__(self, bbcon, sensobs, priority):
+        super(UltrasonicBehavior, self).__init__(bbcon, sensobs, priority)
+        #hvor mange cm den skal reagere på - prøv frem
+        self.distance = 15
 
     def sense_and_act(self):
-        pass
+        if self.sensobs[0].get_value < self.distance:
+            turn = random.choice(["L","R"])
+            self.motor_recommendations = [(turn, 180)]

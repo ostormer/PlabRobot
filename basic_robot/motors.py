@@ -50,6 +50,7 @@ class Motors():
         print("Motors object turning left")
         s = int(self.max * speed)
         if self.dc == 0:
+            print("dc er null, skal svinge på stedet")
             self.set_left_dir(1)
             self.set_left_speed(s)
             self.set_right_dir(0)

@@ -9,8 +9,8 @@ mtb = Motob(mtr)
 
 
 
-btn = ZumoButton()
-btn.wait_for_press()
+# btn = ZumoButton()
+# btn.wait_for_press()
 sleep(2)
 print("Turning 360 deg left")
 mtr.left(speed=0.25, dur=360/40)

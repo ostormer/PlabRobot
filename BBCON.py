@@ -30,7 +30,7 @@ class BBCON:
             raise Exception("maa ha adferden som forsokes aktivert")
         self.active_behaviors.append(behavior)
 
-    def deactive_behavior(self, behavior):
+    def deactivate_behavior(self, behavior):
         self.active_behaviors.remove(behavior)
 
     def add_sensob(self, sensob):

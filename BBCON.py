@@ -2,6 +2,7 @@ from time import sleep
 from Arbitrator import Arbitrator
 from Sensob import Sensob
 from Motob import Motob
+from Motor import Motor
 from Behavior import *
 from basic_robot.ultrasonic import Ultrasonic
 from basic_robot.reflectance_sensors import ReflectanceSensors
@@ -57,7 +58,7 @@ class BBCON:
             behavior.update()
 
     def update_motobs(self, recommendations):
-        #tar inn en liste av recommendations, en for hver
+        # tar inn en liste av recommendations, en for hver
         for motob, rec in zip(self.motobs, recommendations):
             motob.update(rec)
 

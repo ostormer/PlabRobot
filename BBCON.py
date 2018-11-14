@@ -97,6 +97,8 @@ if __name__ == "__main__":
     bbcon.behaviors[1].active_flag = True
     bbcon.add_behavior(CameraColorBehavior(bbcon, [sens_cam], 1))
 
+    bbcon.motobs[0].motors.stop()
+
     btn = ZumoButton()
     btn.wait_for_press()
     sleep(2)

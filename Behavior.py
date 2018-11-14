@@ -88,7 +88,7 @@ class CameraColorBehavior(Behavior):
             # Blue
             self.motor_recommendations = (("L", 1440))
 
-        self.match_degree = frac[max_color]*0.5 + 0.5
+        self.match_degree = 1
         self.bbcon.activate_camera = False
 
 class IR(Behavior):

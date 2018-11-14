@@ -116,7 +116,7 @@ class UltrasonicBehavior(Behavior):
         self.distance = 12
 
     def sense_and_act(self):
-        if self.sensobs[0].get_value < self.distance:
+        if self.sensobs[0].get_value() < self.distance:
             self.bbcon.activate_camera = True
             self.motor_recommendations[("WAIT", 0.5)]
             self.match_degree = 0.8 + 0.2*(self.distance-self.sensobs[0].get_value)/self.distance

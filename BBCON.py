@@ -84,6 +84,7 @@ if __name__ == "__main__":
     sens_ult = Sensob([Ultrasonic()])
     sens_ref = Sensob([ReflectanceSensors()])
     sens_cam = Sensob([Camera()])
+    sens_cam.active_flag = False  # Camera starts deactivated
     bbcon.add_sensob(sens_ult)
     bbcon.add_sensob(sens_ref)
     bbcon.add_sensob(sens_cam)

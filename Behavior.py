@@ -48,11 +48,13 @@ class CameraColorBehavior(Behavior):
     def consider_deactivation(self):
         if not self.bbcon.activate_camera:
             self.active_flag = False
+            self.sensobs[0].active_flag = False
             # May have to update lists of active behaviors and sensobs in bbcon
 
     def consider_activation(self):
         if self.bbcon.activate_camera:
             self.active_flag = True
+            self.sensobs[0].active_flag = True
             # May have to update lists of active behaviors and sensobs in bbcon
 
     def sense_and_act(self):

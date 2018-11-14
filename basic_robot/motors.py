@@ -73,26 +73,6 @@ class Motors():
             self.set_right_speed(150)
         self.persist(dur)
 
-    def turn_left(self, speed=0.25, dur=2):
-        s = int(self.max * speed)
-        self.dc = 0
-        self.set_left_dir(1)
-        self.set_left_speed(s)
-        self.set_right_dir(0)
-        self.set_right_speed(s)
-
-        self.persist(dur)
-
-    def turn_right(self, speed=0.25, dur=2):
-        s = int(self.max * speed)
-        self.dc = 0
-        self.set_left_dir(0)
-        self.set_left_speed(s)
-        self.set_right_dir(1)
-        self.set_right_speed(s)
-
-        self.persist(dur)
-
     def stop(self):
         self.dc = 0
         self.set_left_speed(self.dc)

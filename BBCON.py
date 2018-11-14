@@ -46,7 +46,7 @@ class BBCON:
             behavior.update()
 
     def update_motobs(self, recommendations):
-        #tar inn en liste av recommendations 
+        #tar inn en liste av recommendations
         raise NotImplementedError
 
     def wait(self, seconds):
@@ -54,4 +54,7 @@ class BBCON:
 
     def reset_sensobs(self):
         raise NotImplementedError
-        
+
+
+if __name__ == "__main__":
+    pass

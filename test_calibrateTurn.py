@@ -11,7 +11,7 @@ mtb = Motob(mtr)
 
 btn = ZumoButton()
 btn.wait_for_press()
-sleep(4)
+sleep(2)
 print("Turning 360 deg left")
 mtb.recom = ("L", 360)
 mtb.operationalize()

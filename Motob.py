@@ -10,12 +10,10 @@ class Motob:
         # Value(s) of the Motob. Received and handled in the update() method
         self.recom = None
 
-    def update(self):
-        raise NotImplementedError
+    def update(self, recommendation):
         # First receive the correct recommendation here:
-
-        # Then operationalize it
-        self.operationalize()
+        self.recom = recommendation
+        self.operationalize()  # Then operationalize it
 
     def operationalize(self):
         # Motor recommendations are in the format "Command", value)
@@ -27,7 +25,7 @@ class Motob:
             # Turn left
             print("Turning left")
             dur = value/40  # SOME NUMBER WE NEED TO EXPERIMENT TO FIND
-            self.motors.left(speed=0.25, dur=dur)
+            self.motors.left(speed=0.25, dur=dur)  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!DOES NOT WORK!!!!!!!!!!!!!!!!!
         elif command == "R":
             dur = value/40  # SOME NUMBER WE NEED TO EXPERIMENT TO FIND
             self.motors.right(speed=0.25, dur=dur)

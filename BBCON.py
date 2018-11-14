@@ -7,6 +7,7 @@ from Behavior import *
 from basic_robot.ultrasonic import Ultrasonic
 from basic_robot.reflectance_sensors import ReflectanceSensors
 from basic_robot.camera import Camera
+from basic_robot.zumo_button import ZumoButton
 
 
 class BBCON:
@@ -70,6 +71,8 @@ class BBCON:
 
 
 if __name__ == "__main__":
+
+
     bbcon = BBCON()
     bbcon.add_motob(Motob(Motor()))
 
@@ -86,6 +89,9 @@ if __name__ == "__main__":
     bbcon.activate_behavior(bbcon.behaviors[1])
     bbcon.add_behavior(CameraColorBehavior(bbcon, [sens_cam], 1))
 
+    btn = ZumoButton()
+    btn.wait_for_press()
+    sleep(2)
 
     while True:
         bbcon.run_one_timestep()

@@ -74,7 +74,7 @@ if __name__ == "__main__":
 
 
     bbcon = BBCON()
-    bbcon.add_motob(Motob(Motor()))
+    bbcon.add_motob(Motob(Motors()))
 
     sens_ult = Sensob([Ultrasonic()])
     sens_ref = Sensob([ReflectanceSensors()])

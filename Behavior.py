@@ -122,5 +122,5 @@ class UltrasonicBehavior(Behavior):
             self.motor_recommendations = ("WAIT", 0.5)
             self.match_degree = 0.8 + 0.2*(self.distance-self.sensobs[0].get_value()[0])/self.distance
         else:
-            self.motor_recommendations = ("F", 0.1)
+            self.motor_recommendations = ("F", 10)
             self.match_degree = 0.6

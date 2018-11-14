@@ -22,18 +22,18 @@ class Motob:
         command, value = self.recom[0], self.recom[1:]
         if command == "L":
             # Turn left degrees
-            dur = value[0]/135
+            dur = value[0]/150
             self.motors.left(speed=0.7, dur=dur)
         elif command == "R":
             # Turn right degrees
-            dur = value[0]/120
+            dur = value[0]/150
             self.motors.right(speed=0.7, dur=dur)
         elif command == "F":
             # Drive forward seconds
-            self.motors.forward(speed=0.5, dur=value[0])
+            self.motors.forward(speed=0.25, dur=value[0])
         elif command == "R":
             # Reverse seconds
-            self.motors.backward(speed=0.5, dur=value[0])
+            self.motors.backward(speed=0.25, dur=value[0])
         elif command == "WAIT":
             # wait seconds
             self.motors.stop()

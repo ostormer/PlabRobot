@@ -71,6 +71,8 @@ class BBCON:
     def reset_sensobs(self):
         for sensob in self.sensobs:
             sensob.value = [None] * len(sensob.sensors)
+            for sensor in sensob.sensors:
+                sensor.reset()
 
 
 if __name__ == "__main__":
@@ -98,5 +100,6 @@ if __name__ == "__main__":
     btn.wait_for_press()
     sleep(2)
     bbcon.reset_sensobs()
+    # Reset all sensors
     while True:
         bbcon.run_one_timestep()

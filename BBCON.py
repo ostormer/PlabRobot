@@ -42,6 +42,7 @@ class BBCON:
     # mainmetode/kjerneaktivitet i bbcon
     def run_one_timestep(self):
         self.update_all_sensobs()  # 1. oppdater alle sensobs
+        print("Updated all sensors")
         self.update_all_behaviors()  # 2. oppdater alle behaviors
         # motor rec er en liste
         motor_recommendations = [self.arbitrator.choose_action()]  # 3. invoke arbitrator by caling choose action, mellomlagre output

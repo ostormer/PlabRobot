@@ -1,8 +1,6 @@
-from PIL import Image
-import random
-
 class Behavior:
     """A behavior of the BBR"""
+
     def __init__(self, bbcon, sensobs, priority):
         self.bbcon = bbcon  # Pointer to the controller
         self.sensobs = sensobs  # A list of sensobs this behavior uses
@@ -118,13 +116,13 @@ class UltrasonicBehavior(Behavior):
     def __init__(self, bbcon, sensobs, priority):
         super(UltrasonicBehavior, self).__init__(bbcon, sensobs, priority)
         # hvor mange cm den skal reagere på - prøv frem
-        self.distance = 15
+        self.distance = 12
 
     def sense_and_act(self):
         if self.sensobs[0].get_value < self.distance:
             self.bbcon.activate_camera = True
             self.motor_recommendations[("WAIT", 0.5)]
-            self.match_degree = 0.8 + 0.2*(15-self.distance)/15
+            self.match_degree = 0.8 + 0.2*(self.distance-self.sensobs[0].get_value)/self.distance
         else:
             self.motor_recommendations[("F", 0.3)]
             self.match_degree = 0.6

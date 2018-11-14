@@ -10,7 +10,7 @@ class Sensob:
 
     def __init__(self, sensors):
         self.sensors = sensors  # A list(!) of sensors used by the sensobs
-        self.value = None  # Value(s) of the Sensob. Updated by update() method
+        self.value = [None] * len(self.sensors)  # Value(s) of the Sensob. Updated by update() method
 
     def update(self):
         self.value = []
@@ -18,6 +18,7 @@ class Sensob:
             # Need to double-check that this works in all sensor wrappers
             sens.update()
             self.value.append(sens.get_value())
+            print("New value of sensob is: " + str(self.value))
 
     def get_value(self):
         return self.value

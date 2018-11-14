@@ -82,6 +82,7 @@ class CameraColorBehavior(Behavior):
             self.motor_recommendations = (("L", 1440))
 
         self.match_degree = frac[max_color]*0.5 + 0.5
+        self.bbcon.activate_camera = False
 
 class IR(Behavior):
     def __init__(self, bbcon, sensobs, priority):

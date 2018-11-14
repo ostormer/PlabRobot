@@ -59,6 +59,11 @@ class CameraColorBehavior(Behavior):
 
     def sense_and_act(self):
         img = self.sensobs[0].get_value()[0]
+        if img is None:
+            self.match_degree = 0
+            self.motor_recommendations = (("Never Used", 1337))
+            return
+
         width, height = img.size
         col = [0, 0, 0]
         for y in range(height):

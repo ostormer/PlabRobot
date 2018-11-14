@@ -124,5 +124,7 @@ class UltrasonicBehavior(Behavior):
 
     def sense_and_act(self):
         if self.sensobs[0].get_value < self.distance:
-            turn = random.choice(["L","R"])
+            """"turn = random.choice(["L","R"])
             self.motor_recommendations = [(turn, 180)]
+            eventuelt""""
+            self.motor_recommendations[("S",180)]

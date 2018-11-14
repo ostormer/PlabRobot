@@ -13,10 +13,10 @@ while True:
     btn.wait_for_press()
     sleep(1)
     print("Turning 360 deg left")
-    mtr.left(speed=0.65, dur=360/90)  # Perfect
+    mtr.left(speed=0.7, dur=360/120)  # Perfect
     btn.wait_for_press()
     sleep(1)
-    mtr.right(speed=0.65, dur=360/90)
+    mtr.right(speed=0.7, dur=360/120)
 
 # mtb.recom = ("L", 360)
 # mtb.operationalize()

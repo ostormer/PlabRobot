@@ -43,8 +43,9 @@ class BBCON:
     def run_one_timestep(self):
         self.update_all_sensobs()  # 1. oppdater alle sensobs
         self.update_all_behaviors()  # 2. oppdater alle behaviors
-        #motor rec er en liste
+        # motor rec er en liste
         motor_recommendations = self.arbitrator.choose_action()  # 3. invoke arbitrator by caling choose action, mellomlagre output
+        print("Chosen recommendation: " + str(motor_recommendations))
         self.update_motobs([motor_recommendations])  # 4.update settings of all motors
         self.wait(0.5)  # 5. pause for å la motorsettings være aktive en periode
         self.reset_sensobs()  # 6.

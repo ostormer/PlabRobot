@@ -1,6 +1,3 @@
-from basic_robot.reflectance_sensors import *
-
-
 class Sensob:
     """Parent method for Sensobs
     Calls Sensor objects' methods to get their values, used by Behaviors

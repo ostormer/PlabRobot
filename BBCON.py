@@ -1,5 +1,12 @@
 from time import sleep
 from Arbitrator import Arbitrator
+from Sensob import Sensob
+from Motob import Motob
+from Behavior import *
+from basic_robot.ultrasonic import Ultrasonic
+from basic_robot.reflectance_sensors import ReflectanceSensors
+from basic_robot.camera import Camera
+
 
 class BBCON:
 
@@ -8,7 +15,8 @@ class BBCON:
         self.active_behaviors = []  # list of all active behaviors
         self.sensobs = []  # list of all sensory objects used by the bbcno
         self.motobs = []  # list of all motors objects used by the bbcon
-        self.arbitrator = Arbitrator(self)# arbitrator object that will resolve actuator requests produced by the behaviors
+        self.arbitrator = Arbitrator(self)  # arbitrator object that will resolve actuator requests produced by the behaviors
+        self.activate_camera = False
         # ikke lagt til forslag om timestep, inactive o.l.
 
     # metoder for bbcon
@@ -25,6 +33,9 @@ class BBCON:
 
     def add_sensob(self, sensob):
         self.sensobs.append(sensob)
+
+    def add_motob(self, motob):
+        self.motobs.append(motob)
 
     # mainmetode/kjerneaktivitet i bbcon
     def run_one_timestep(self):
@@ -46,8 +57,9 @@ class BBCON:
             behavior.update()
 
     def update_motobs(self, recommendations):
-        #tar inn en liste av recommendations
-        raise NotImplementedError
+        #tar inn en liste av recommendations, en for hver
+        for motob, rec in zip(self.motobs, recommendations):
+            motob.update(rec)
 
     def wait(self, seconds):
         sleep(seconds)  # står eksempelvis halvt sek,må sikkert justeres
@@ -57,4 +69,22 @@ class BBCON:
 
 
 if __name__ == "__main__":
-    pass
+    bbcon = BBCON()
+    bbcon.add_motob(Motob(Motor()))
+
+    sens_ult = Sensob([Ultrasonic()])
+    sens_ref = Sensob([ReflectanceSensors()])
+    sens_cam = Sensob([Camera()])
+    bbcon.add_sensob(sens_ult)
+    bbcon.add_sensob(sens_ref)
+    bbcon.add_sensob(sens_cam)
+
+    bbcon.add_behavior(UltrasonicBehavior(bbcon, [sens_ult], 0.5))
+    bbcon.activate_behavior(bbcon.behaviors[0])
+    bbcon.add_behavior(IR(bbcon, [sens_ref], 0.7))
+    bbcon.activate_behavior(bbcon.behaviors[1])
+    bbcon.add_behavior(CameraColorBehavior(bbcon, [sens_cam], 1))
+
+
+    while True:
+        bbcon.run_one_timestep()

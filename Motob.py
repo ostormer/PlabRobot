@@ -21,13 +21,20 @@ class Motob:
         # or ("F", [2, 0.3]) : means drive forward for 2 sec at 0.3 speed
         command, value = self.recom[0], self.recom[1:]
         if command == "L":
-            # Turn left
-            print("Turning left")
-            dur = value[0]/40  # SOME NUMBER WE NEED TO EXPERIMENT TO FIND
-            self.motors.left(speed=0.25, dur=dur)  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!DOES NOT WORK!!!!!!!!!!!!!!!!!
+            # Turn left degrees
+            dur = value[0]/135
+            self.motors.left(speed=0.7, dur=dur)
         elif command == "R":
-            dur = value[0]/40  # SOME NUMBER WE NEED TO EXPERIMENT TO FIND
-            self.motors.right(speed=0.25, dur=dur)
-        # More commands here...
-
-        pass
+            # Turn right degrees
+            dur = value[0]/120
+            self.motors.right(speed=0.7, dur=dur)
+        elif command == "F":
+            # Drive forward seconds
+            self.motors.forward(speed=0.5, dur=value[0])
+        elif command == "R":
+            # Reverse seconds
+            self.motors.backward(speed=0.5, dur=value[0])
+        elif command == "WAIT":
+            # wait seconds
+            self.motors.stop()
+            self.motors.persist(value[0])

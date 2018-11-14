@@ -78,25 +78,23 @@ class CameraColorBehavior(Behavior):
 
         if max_color == 0:
             # Red
-            pass
+            self.motor_recommendations = (("L", 90))
         elif max_color == 1:
             # Green
-            pass
+            self.motor_recommendations = (("R", 90))
         elif max_color == 2:
             # Blue
-            pass
+            self.motor_recommendations = (("L", 1440))
 
+        self.match_degree = frac[max_color]*0.5 + 0.5
 
 class IR(Behavior):
     def __init__(self, bbcon, sensobs, priority):
         super(IR, self).__init__(bbcon, sensobs, priority)
 
     def sense_and_act(self):
-#er value og readings tenkt å være samme ting?         
-        value = self.sensobs.get_value()  # Jepp, tror value er unødvendig her
-
         dark_treshold = 0.25
-        readings = self.update()
+        readings = self.sensobs[0].get_value()
         dark_count = 0
         reflect_sum = 0
         for reflectance in readings:
@@ -105,7 +103,7 @@ class IR(Behavior):
                 reflect_sum += reflectance
         # Update match_degree and weight
         if dark_count >= 2:  # Need at least 2 dark readings to have any priority
-            self.match_degree = 0.5 + 0.5 * (1 - reflect_sum / dark_count)
+            self.match_degree = 1
         else:
             self.match_degree = 0
         # Update motor_recommendations
@@ -114,17 +112,19 @@ class IR(Behavior):
 
 
 class UltrasonicBehavior(Behavior):
-    #returnerer distansen til objekt foran sensor i cm
-    #til testing: ultrasonic.send_activation_pulse inneholder en sleep som
-    #vi må prøve oss frem til (linje 61)
+    # returnerer distansen til objekt foran sensor i cm
+    # til testing: ultrasonic.send_activation_pulse inneholder en sleep som
+    # vi må prøve oss frem til (linje 61)
     def __init__(self, bbcon, sensobs, priority):
         super(UltrasonicBehavior, self).__init__(bbcon, sensobs, priority)
-        #hvor mange cm den skal reagere på - prøv frem
+        # hvor mange cm den skal reagere på - prøv frem
         self.distance = 15
 
     def sense_and_act(self):
         if self.sensobs[0].get_value < self.distance:
-            """"turn = random.choice(["L","R"])
-            self.motor_recommendations = [(turn, 180)]
-            eventuelt""""
-            self.motor_recommendations[("S",180)]
+            self.bbcon.activate_camera = True
+            self.motor_recommendations[("WAIT", 0.5)]
+            self.match_degree = 0.8 + 0.2*(15-self.distance)/15
+        else:
+            self.motor_recommendations[("F", 0.3)]
+            self.match_degree = 0.6

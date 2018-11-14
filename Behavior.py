@@ -93,7 +93,7 @@ class IR(Behavior):
 
     def sense_and_act(self):
 #er value og readings tenkt å være samme ting?         
-        value = self.sensobs.get_value()
+        value = self.sensobs.get_value()  # Jepp, tror value er unødvendig her
 
         dark_treshold = 0.25
         readings = self.update()

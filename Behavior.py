@@ -56,7 +56,7 @@ class CameraColorBehavior(Behavior):
             # May have to update lists of active behaviors and sensobs in bbcon
 
     def sense_and_act(self):
-        img = self.sensobs[0].get_value()
+        img = self.sensobs[0].get_value()[0]
         width, height = img.size
         col = [0, 0, 0]
         for y in range(height):
@@ -89,7 +89,7 @@ class IR(Behavior):
 
     def sense_and_act(self):
         dark_treshold = 0.25
-        readings = self.sensobs[0].get_value()
+        readings = self.sensobs[0].get_value()[0]
         dark_count = 0
         reflect_sum = 0
         for reflectance in readings:
@@ -116,10 +116,10 @@ class UltrasonicBehavior(Behavior):
         self.distance = 12
 
     def sense_and_act(self):
-        if self.sensobs[0].get_value() < self.distance:
+        if self.sensobs[0].get_value()[0] < self.distance:
             self.bbcon.activate_camera = True
             self.motor_recommendations[("WAIT", 0.5)]
-            self.match_degree = 0.8 + 0.2*(self.distance-self.sensobs[0].get_value)/self.distance
+            self.match_degree = 0.8 + 0.2*(self.distance-self.sensobs[0].get_value()[0])/self.distance
         else:
             self.motor_recommendations[("F", 0.3)]
             self.match_degree = 0.6

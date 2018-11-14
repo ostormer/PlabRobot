@@ -2,8 +2,8 @@ from time import sleep
 from Arbitrator import Arbitrator
 from Sensob import Sensob
 from Motob import Motob
-from Motor import Motor
 from Behavior import *
+from basic_robot.motor import Motor
 from basic_robot.ultrasonic import Ultrasonic
 from basic_robot.reflectance_sensors import ReflectanceSensors
 from basic_robot.camera import Camera

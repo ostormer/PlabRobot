@@ -31,9 +31,6 @@ class Behavior:
         if self.active_flag:
             self.sense_and_act()  # Update match_degree, motor_recommendations
             self.weight = self.match_degree * self.priority
-            # Do stuff with weight and motor_recommendations
-
-            raise NotImplementedError
 
     def sense_and_act(self):
         # Uses its sensobs and calculates match_degree, motor_recommendations

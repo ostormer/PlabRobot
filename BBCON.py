@@ -87,8 +87,10 @@ if __name__ == "__main__":
 
     bbcon.add_behavior(UltrasonicBehavior(bbcon, [sens_ult], 0.5))
     bbcon.activate_behavior(bbcon.behaviors[0])
+    bbcon.behaviors[0].active_flag = True
     bbcon.add_behavior(IR(bbcon, [sens_ref], 0.7))
     bbcon.activate_behavior(bbcon.behaviors[1])
+    bbcon.behaviors[1].active_flag = True
     bbcon.add_behavior(CameraColorBehavior(bbcon, [sens_cam], 1))
 
     btn = ZumoButton()

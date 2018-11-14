@@ -7,12 +7,12 @@ from time import sleep
 mtr = Motors()
 mtb = Motob(mtr)
 
+btn = ZumoButton()
 
-
-# btn = ZumoButton()
-# btn.wait_for_press()
-sleep(2)
-print("Turning 360 deg left")
-mtr.left(speed=0.5, dur=360/40)
+while True:
+    btn.wait_for_press()
+    sleep(2)
+    print("Turning 360 deg left")
+    mtr.left(speed=0.25, dur=360/40)
 # mtb.recom = ("L", 360)
 # mtb.operationalize()
